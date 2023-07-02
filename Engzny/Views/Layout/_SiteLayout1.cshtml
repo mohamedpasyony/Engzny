@@ -1,0 +1,153 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <!-- Import Bootstrap -->
+    <link rel="stylesheet" href="~/siteFolders/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/siteFolders/css/all.min.css" />
+    <link rel="stylesheet" href="~/siteFolders/css/engzny.css" />
+    <link rel="stylesheet" href="~/siteFolders/css/about.css" />
+    <link rel="stylesheet" href="~/siteFolders/css/how.css" />
+    <link rel="stylesheet" href="~/siteFolders/css/contact.css" />
+    <link rel="stylesheet" href="~/siteFolders/css/order.css" />
+
+    <!-- Import Bootstrap -->
+</head>
+
+<body>
+    <!-- Start Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" asp-controller="Site" asp-action="Index">
+                <img src="~/siteFolders/imgs/logo.png" width="150px" height="35px" alt="logo">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main" aria-controls="main"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="main" style="direction: rtl;">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="padding: 0px;">
+                    <li class=" nav-item">
+                        <a class="nav-link p-2 p-lg-3" aria-current="page" asp-action="Index" asp-controller="Site">الرئيسية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" asp-action="HowToUse" asp-controller="Site">كيفية الإستخدام</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" asp-action="AboutUs" asp-controller="Site">عن الشركة</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" asp-action="ContactUs" asp-controller="Site">تواصل معنا</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <!-- Start Services -->
+    @RenderBody();
+    <!-- End Cards -->
+    <!-- Start Footer -->
+    <div class="footer pt-5 pb-3 text-white-50 text-center text-md-end">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-5">
+                    <div class="info mb-5">
+                        <img src="~/SiteFolders/imgs/logo.png" width="150px" height="35px" alt="" class="mb-4" />
+                        <p class="mb-5">
+                            انجزني هو أول موقع للخدمات المنزلية علي الانترنت ,​هدفنا ان نوصل ​ال​عملاء بأفضل مقدمي
+                            الخدمات و نقدم​ ​لهم عروض مميزة.
+                        </p>
+                        <div class="copyright">
+                            مملوك بواسطة <span>Engzny Team</span>
+                            <div>&copy; 2023 - <span>FCI-TU</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Start Home Services Links -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="links pe-lg-5">
+                        <h5 class="text-light">الروابط</h5>
+                        <ul class="footer-list lh-lg">
+                            <li><a class="link" asp-action="Index" asp-controller="Site">الرئيسية</a></li>
+                            <li><a class="link" asp-action="Order" asp-controller="Site">طلب خدمة</a></li>
+                            <li><a class="link" asp-action="HowToUse">كيفية الإستخدام</a></li>
+                            <li><a asp-action="AboutUs" asp-controller="Site" class="link">عن الشركة</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- End Home Services Links -->
+                <!-- Start About us Footer -->
+                <!--End About Footer  -->
+                <!-- Start Contact us Footer -->
+                <div class="col-md-6 col-lg-2">
+                    <div class="contact">
+                        <h5 class="text-light">تواصل معنا</h5>
+                        <ul class="footer-list lh-lg">
+                            <li><a class="link" asp-action="ContactUs" asp-controller="Site">انضم الينا</a></li>
+                            <li><a class="link" asp-action="ContactUs" asp-controller="Site">تقدم بشكوى</a></li>
+                        </ul>
+
+                        <p class="lh-lg mt-3 mb-3">
+                            تواصل معنا:
+                            <a href="mailto:Engzny@gmail.com">
+                                EngznyCom@gmail.com
+                            </a>
+                        </p>
+
+                        <ul class="d-flex mt-3 footer-list gap-3 justify-content-center">
+                            <li>
+                                <a class="d-block text-light" href="#">
+                                    <i class="fa-brands fa-youtube fa-lg youtube rounded-circle p-2"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="d-block text-light" href="#">
+                                    <i class="fa-brands fa-linkedin fa-lg linkedin rounded-circle p-2"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="d-block text-light" href="#">
+                                    <i class="fa-brands fa-twitter fa-lg twitter rounded-circle p-2"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="d-block text-light" href="#">
+                                    <i class="fa-brands fa-facebook fa-lg facebook rounded-circle p-2"></i>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <!-- End Contact us Footer -->
+            </div>
+        </div>
+    </div>
+    <!-- End Footer -->
+    <!-- Import bootstrap fontawesome js  -->
+    @*<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>*@
+    <script src="~/siteFolders/js/bootstrap.bundle.min.js"></script>
+    <script src="~/siteFolders/js/all.min.js"></script>
+
+
+    
+
+
+
+    <!-- End Importing -->
+
+</body>
+
+</html>

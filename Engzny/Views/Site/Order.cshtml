@@ -1,0 +1,137 @@
+﻿@model OrderVM
+@{
+    ViewBag.Title = "طلب الخدمة";
+    Layout = "~/Views/Layout/_SiteLayout1.cshtml";
+}
+
+<div class="page-hdr">
+    <div class="container">
+        <h1>
+            طلب الخدمة
+        </h1>
+    </div>
+</div>
+
+<!-- Start Form -->
+<div class="contact  mt-3 mb-5">
+
+    <!-- End Page Header -->
+    <div class="container">
+        <div class="main-title text-center mb-5 position-relative">
+            <h2 style="font-weight: bold;">ادخل بياناتك هنا.</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-7">
+                <form asp-action="Order" asp-controller="Site" method="post">
+                    <div class="form-group mb-4">
+                        <label for="name">الاسم:</label>
+                        <input class="form-control" type="text" asp-for="Name"
+                               placeholder="قم بإدخال اسمك هنا">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="number">الهاتف:</label>
+                        <input  class="form-control" type="text" asp-for="Phone" value=""
+                               placeholder="قم بإدخال رقم هاتفك هنا">
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+
+                    </div>
+
+                    <div class=" form-group mb-4">
+                        <label for="craft">الخدمة:</label>
+                        <select class="form-control" asp-for="ServiceId" asp-items="@(new SelectList(Model.Services, "Id", "Name"))"
+                                placeholder="اختر الخدمه">
+                        </select>
+                        <span asp-validation-for="ServiceId" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="email"> البريد الإلكترونى:</label>
+                        <input class="form-control" type="email" asp-for="Email"
+                               placeholder="قم بإدخال الايميل هنا">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="date"> الميعاد:</label>
+                        <input  class="form-control" type="date" asp-for="Date" value="">
+                        <span asp-validation-for="Date" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="date"> ميعاد اخر:</label>
+                        <input  class="form-control" type="date" asp-for="AnotherDate" value="">
+                        <span asp-validation-for="AnotherDate" class="text-danger"></span>
+
+                    </div>
+                    <div class=" form-group mb-4">
+                        <label for="message">العنوان بالتفصيل:</label>
+                        <textarea class="form-control" rows="5" asp-for="Address"
+                                  placeholder="اكتب العنوان هنا"></textarea>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+
+                    </div>
+
+                    <div class=" form-group mb-4">
+                        <label for="message">ملاحظات:</label>
+                        <textarea class="form-control" rows="5" asp-for="Notes"
+                                  placeholder="اكتب ملاحظاتك هنا"></textarea>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <button class="col-4" type="submit" value="submit" name="submit">إرسال</button>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="col-lg-5">
+                <div class="sub-cont">
+                    <h3 class="mb-3">للحجز بالهاتف:</h3>
+                    <p>Call Center: 010101010 | 171101190101</p>
+                    <p>
+                        Email : <a class="" href="mailto:EngznyCom@gmail.com">
+                            EngznyCom@gmail.com
+                        </a>
+                    </p>
+                    <ul class="d-flex list-unstyled gap-4">
+                        <li>
+                            <a class="d-block text-light" href="#">
+                                <i class="fa-brands fa-youtube fa-lg youtube rounded-circle p-2"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="d-block text-light" href="#">
+                                <i class="fa-brands fa-linkedin fa-lg linkedin rounded-circle p-2"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="d-block text-light" href="#">
+                                <i class="fa-brands fa-twitter fa-lg twitter rounded-circle p-2"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="d-block text-light" href="#">
+                                <i class="fa-brands fa-facebook fa-lg facebook rounded-circle p-2"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- End Form -->
+<script src="~/jquery/dist/jquery.js"></script>
+<script src="~/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+
+

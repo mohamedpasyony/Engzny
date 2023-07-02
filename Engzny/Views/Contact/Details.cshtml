@@ -1,0 +1,51 @@
+﻿
+@model ContactVM
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="col-12">
+
+    <div class="bg-dark rounded h-100 p-4">
+        <h1 class="text-white">Details</h1>
+        <a asp-action="Index" class="btn btn-outline-danger">Back</a>
+        <h6 class="mb-4">Accented Table</h6>
+        <table class="table table-hover">
+
+            <tbody>
+                <tr>
+                    <th class="text-info" scope="row">Name :</th>
+                    <td class="text-white">@Model.Name</td>
+
+                </tr>
+                <tr>
+                    <th class="text-info" scope="row">Email :</th>
+                    <td class="text-white">@Model.Email</td>
+
+                </tr>
+               
+                <tr>
+                    <th class="text-info" scope="row">Phone Number :</th>
+                    <td class="text-white"><span>0</span>@Model.Phone</td>
+
+                </tr>
+
+                <tr>
+                    <th class="text-info" scope="row">Date :</th>
+                    <td class="text-white">@Model.ContactDateTime.ToString("dddd, dd MMMM yyyy hh:mm tt")</td>
+
+                </tr>
+                <tr>
+                    <th class="text-info" scope="row">Message :</th>
+                    <td class="text-white">@Model.Message</td>
+
+                </tr>
+               
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

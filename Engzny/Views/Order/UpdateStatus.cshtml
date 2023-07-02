@@ -1,0 +1,55 @@
+﻿
+@model OrderVM
+@{
+    ViewData["Title"] = "AddRoleForUser";
+}
+
+<!-- Sign Up Start -->
+<div class="container-fluid">
+    <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
+        <div class="col-12 col-sm-10 col-md-7 col-lg-7 col-xl-6">
+            <div class="bg-dark rounded p-4 p-sm-5 my-4 mx-3">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <a href="index.html" class="">
+                        <h3 class="text-primary"><i class="fas fa-tools me-2"></i>Engzny</h3>
+                    </a>
+                    <h3 class="text-white">Update Order Status</h3>
+                </div>
+                
+                <form asp-action="UpdateStatus" asp-controller="Order" method="post">
+
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="Name" />
+                    <input type="hidden" asp-for="Phone" />
+                    <input type="hidden" asp-for="Email" />
+                    <input type="hidden" asp-for="Date" />
+                    <input type="hidden" asp-for="AnotherDate" />
+                    <input type="hidden" asp-for="Notes" />
+                    <input type="hidden" asp-for="Address" />
+                    <input type="hidden" asp-for="FeedBack" />
+                    <input type="hidden" asp-for="ServiceId" />
+                    <div class="form-floating mb-4">
+                        <select class="form-control" asp-for="StatusId" asp-items="@(new SelectList(Model.statuses, "Id", "Name"))">
+                            <option></option>
+                        </select>
+                        <label for="floatingSelect">Select Status</label>
+
+                        <span asp-validation-for="StatusId" class="text-danger"></span>
+
+                    </div>
+
+
+
+                    <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Sign Up End -->
+<script src="~/jquery/dist/jquery.js"></script>
+<script src="~/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+
+

@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+}
+<div class="row g-4">
+    <div class="col-sm-6 col-xl-4">
+        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+            <i class="fas fa-shopping-cart fa-3x text-primary"></i>
+            <div class="ms-3">
+                <p class="mb-2">Orders</p>
+                <h4 class="mb-0">@ViewBag.CountOrders</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-4">
+        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+            <i class="fas fa-wrench fa-3x text-primary"></i>
+            <div class="ms-3 ">
+                <p class="mb-2">Services</p>
+                <h4 class="mb-0">@ViewBag.CountServices</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-4">
+        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+            <i class="fas fa-people-carry fa-3x text-primary"></i>
+            <div class="ms-3">
+                <p class="mb-2">Craftmens</p>
+                <h4 class="mb-0">@ViewBag.CountCraftmens</h4>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-sm-6 col-xl-6">
+        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+            <i class="far fa-address-book fa-3x text-primary"></i>
+            <div class="ms-3">
+                <p class="mb-2">Contacts</p>
+                <h4 class="mb-0">@ViewBag.CountContacts</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-xl-6 col-md-12">
+        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+            <i class="fas fa-users fa-3x text-primary"></i>
+            <div class="ms-3">
+                <p class="mb-2">Dashboard Users</p>
+                <h4 class="mb-0">@ViewBag.CountUsers</h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart Start -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+           
+           
+            <div class="col-sm-12 col-xl-6">
+                <div class="bg-light rounded h-100 p-4">
+                    <h6 class="mb-4">Bar Chart</h6>
+                    <canvas id="bar-chart"></canvas>
+                </div>
+            </div>
+           
+            <div class="col-sm-12 col-xl-6">
+                <div class="bg-light rounded h-100 p-4">
+                    <h6 class="mb-4">Pie Chart</h6>
+                    <canvas id="pie-chart"></canvas>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- Chart End -->
+</div>
+@section Scripts{
+
+    <script>
+        var ctx4 = document.getElementById("bar-chart")
+        var myChart4 = new Chart(ctx4, {
+            type: "bar",
+            data: {
+                labels: ["Orders", "Services", "Craftmens", "Contacts","Dashboard Users"],
+                datasets: [{
+                    backgroundColor: [
+                        "rgba(0, 156, 255, .7)",
+                        "rgba(0, 156, 255, .6)",
+                        "rgba(0, 156, 255, .5)",
+                        "rgba(0, 156, 255, .4)",
+                        "rgba(0, 156, 255, .3)"
+                    ],
+                    data: [@ViewBag.CountOrders,@ViewBag.CountServices , @ViewBag.CountCraftmens, @ViewBag.CountContacts, @ViewBag.CountUsers ]
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    </script>
+    <script>
+    var ctx5 = document.getElementById("pie-chart");
+    var myChart5 = new Chart(ctx5, {
+        type: "pie",
+        data: {
+            labels: ["Orders", "Services", "Craftmens", "Contacts", "Dashboard Users"],
+            datasets: [{
+                backgroundColor: [
+                    "rgba(0, 156, 255, .7)",
+                    "rgba(0, 156, 255, .6)",
+                    "rgba(0, 156, 255, .5)",
+                    "rgba(0, 156, 255, .4)",
+                    "rgba(0, 156, 255, .3)"
+                ],
+                    data: [@ViewBag.CountOrders,@ViewBag.CountServices , @ViewBag.CountCraftmens, @ViewBag.CountContacts, @ViewBag.CountUsers ]
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+    </script>
+
+
+
+
+
+}
+
+
+
+

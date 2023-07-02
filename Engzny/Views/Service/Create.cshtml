@@ -1,0 +1,49 @@
+﻿
+@model ServiceVM
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="bg-dark d-flex justify-content-center col-10 " style="border-radius:9px">
+    <div class="col-md-6 bg-dark mt-4 mb-4 ">
+        <h1 class="text-white text-center ">Add Service</h1>
+        <form method="POST" asp-action="Create" asp-controller="Service" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="text-info" asp-for="Name"></label>
+                <input type="text" class="form-control" asp-for="Name" maxlength="50" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <br />
+
+
+
+            <div class="form-group ">
+                <label class="text-info" asp-for="Description"></label>
+                <textarea class="form-control" asp-for="Description" maxlength="2500" rows="4"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <br />
+
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" asp-for="Image" accept="image/*" />
+                <label class="custom-file-label text-info" asp-for="Image"></label>
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <br />
+
+            <div class="form-group d-flex justify-content-center">
+                <button type="submit" class="btn btn-outline-success mt-4"> Save </button>
+                <a asp-action="Index" class="btn btn-outline-danger mt-4" style="margin-left:10px"> Back </a>
+
+            </div>
+
+
+
+        </form>
+    </div>
+</div>
+
+<script src="~/jquery/dist/jquery.js"></script>
+<script src="~/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+

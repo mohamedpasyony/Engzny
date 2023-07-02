@@ -1,0 +1,55 @@
+﻿
+
+@model UsersVM
+@{
+    ViewData["Title"] = "Update";
+}
+
+<!-- Update Start -->
+<div class="container-fluid">
+    <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
+        <div class="col-12 col-sm-10 col-md-7 col-lg-7 col-xl-6">
+            <div class="bg-dark rounded p-4 p-sm-5 my-4 mx-3">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <a href="index.html" class="">
+                        <h3 class="text-primary"><i class="fas fa-tools me-2"></i>Engzny</h3>
+                    </a>
+                    <h3 class="text-white">Update</h3>
+                </div>
+                <div asp-validation-summary="All" class="form-floating mb-3">
+
+                </div>
+                <form asp-action="Update" asp-controller="User" method="post">
+                    <input type="hidden" asp-for="UserId" />
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="UserName" type="text" class="form-control" id="floatingText" placeholder="jhondoe">
+                        <label for="floatingText">Username</label>
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">Email address</label>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Update</button>
+                    <a asp-action="Index" class="btn btn-outline-danger  ">Back</a>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Update End -->
+<script src="~/jquery/dist/jquery.js"></script>
+<script src="~/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+
+
+

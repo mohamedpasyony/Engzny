@@ -1,0 +1,243 @@
+﻿@model IQueryable<OrderVM>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+@if (!Model.Any())
+{
+
+    <div class="alert alert-info" role="alert">
+        No Orders Found !
+    </div>
+}
+else
+{
+
+    <div class="col-12">
+        <div class="bg-dark rounded h-100 p-4">
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <h1 class="text-white">All Orders</h1>
+                <div class="flex flex-row">
+                    <a asp-action="PendingOrders" class="btn btn-warning">PendingOrders</a>
+                    <a asp-action="ExecutingOrders" class="btn btn-primary">ExecutingOrders</a>
+                    <a asp-action="DoneOrders" class="btn btn-success">DoneOrders</a>
+                </div>
+               
+            </div>
+            <div class="container-fluid">
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="card" style="border:none">
+                            <div class="body bg-dark">
+                                <div class="table-responsive">
+                                    <table id="mytable1" class="table table-bordered table-dark table-striped table-hover js-basic-example dataTable">
+                                        <thead>
+                                            <tr class="text-info">
+                                                <th scope="col">OrderID</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Service Type</th>
+                                                <th scope="col">Number</th>
+                                                <th scope="col">Order Time</th>
+                                                <th scope="col">Status</th>
+
+                                                <th scope="col">Details</th>
+                                                <th scope="col">Actions</th>
+                                                <th scope="col">Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="Otbody">
+                                            @foreach (var item in Model)
+                                            {
+                                            <tr class="text-white parent">
+                                                <td>
+                                                    @item.Id
+                                                </td>
+                                                <td>@item.Name</td>
+                                                <td>@item.Service.Name</td>
+                                                <td><span>0</span>@item.Phone</td>
+                                                <td>@item.OrderDateTime.ToString("dddd, dd MMMM yyyy hh:mm:ss tt")</td>
+                                                @if (item.StatusId == 1)
+                                                {
+                                                    <td style="color:yellow">@item.Status.Name</td>
+
+                                                }
+                                                @if (item.StatusId == 2)
+                                                {
+                                                    <td style="color:dodgerblue">@item.Status.Name</td>
+
+                                                }
+                                                @if (item.StatusId == 3)
+                                                {
+                                                    <td style="color:forestgreen">@item.Status.Name</td>
+
+                                                }
+
+                                                <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Details</a></td>
+                                                @if (item.Status.Name != "Done")
+                                                {
+                                                    <td><a asp-action="UpdateStatus" asp-route-id="@item.Id" class="btn btn-primary">Change Status</a></td>
+
+                                                }
+                                                @if (item.Status.Name == "Done" && item.FeedBack == null)
+                                                {
+                                                    <td><a asp-action="AddFeedback" asp-route-id="@item.Id" class="btn btn-secondary">Add FeedBack</a></td>
+                                                }
+
+                                                @if (item.Status.Name == "Done" && item.FeedBack != null)
+                                                {
+                                                    <td class="text-success">No Action Needed</td>
+
+                                                }
+                                                <td><a href="javascript:;" data-id="@item.Id" class="btn btn-danger js-delete">Delete</a></td>
+                                            </tr>
+
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+            const $mytable = $('#mytable1');
+            $mytable.on('click', '.js-delete', function () {
+                var btn = $(this);
+
+                bootbox.confirm({
+                    title: 'Delete Order',
+                    message: 'are you sure you want to delete this order ??',
+                    buttons: {
+                        cancel: {
+                            label: '<i class="fa fa-times"></i> Cancel'
+                        },
+                        confirm: {
+                            label: '<i class="fa fa-check"></i> Confirm',
+                           className :'btn-danger'
+                        }
+                    },
+                    callback: function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: '/Order/Delete/' + btn.data('id'),
+                                success: function () {
+                                    btn.parents('.parent').fadeOut();
+                                    toastr.success("Order deleted succesuful !");
+                                },
+                                error: function () {
+                                    toastr.error("Something went worng !");
+
+                                }
+                            });
+                        }
+                    }
+                });
+               
+
+            });
+        });
+    </script>
+
+    <script>
+        $(function () {
+                        $('.js-basic-example').DataTable({
+                            responsive: true,
+                            paging: true,
+                            pageLength: 5,
+                            bSort: true,
+                            bFilter: true,
+                            lengthMenu: [[3, 5, 10, 25, 50, -1], [3, 5, 10, 25, 50, "All"]],
+                           
+                            dom: 'Bfrtip',
+                            buttons: [
+                                {
+                                   
+                                    extend: "collection",
+                                    className: "btn btn-primary",
+                                    titleAttr: 'Options',
+                                    text: 'Options',
+                                    buttons: [
+                                        'pageLength',
+                                        'colvis',
+                                        {
+                                            extend: "print",
+                                            title: 'Orders',
+                                           
+                                            exportOptions: {
+                                                columns: ':visible'
+                                            }
+                                        },
+                                        
+
+
+                                        {
+                                            extend: "pdf",
+                                            title: 'Orders',
+                                            text:'Export in pdf',
+                                            download: 'open',
+                                            exportOptions: {
+                                                columns: ':visible'
+                                            }
+
+                                        },
+
+                                        {
+                                            extend: "excel",
+                                            title: 'Orders',
+                                            text: 'Export in excel',
+                                            exportOptions: {
+                                                columns: ':visible'
+                                            }
+
+                                        },
+                                        {
+                                            extend: "excel",
+                                            title: 'Orders',
+                                            text: 'Export in csv',
+                                            exportOptions: {
+                                                columns: ':visible'
+                                            }
+
+                                        },
+
+                                        'copy', 
+                                    ],
+
+
+
+                                }
+
+                                
+                            ],
+                           
+                            columnDefs: [{
+                                targets: -1,
+                                visible: true
+                            }],
+
+
+                           
+                            lengthMenu: [[3, 5, 10, 25, 50, -1], [3, 5, 10, 25, 50, "All"]],
+
+                        });
+                    });
+
+            
+
+
+
+    </script>
+}
+
+

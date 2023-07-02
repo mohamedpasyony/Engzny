@@ -1,0 +1,161 @@
+﻿@model OrderVM
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="col-12">
+
+    <div class="bg-dark rounded h-100 p-4">
+        <h1 class="text-white">Details</h1>
+        <a asp-action="Index" class="btn btn-outline-danger">Back</a>
+        <h6 class="mb-4">Accented Table</h6>
+        <table class="table table-hover js-basic-example dataTable">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+               
+
+            </thead>
+
+            <tbody>
+                <tr>
+                    <th class="text-info" scope="row">OrderID :</th>
+                    <td class="text-white">@Model.Id</td>
+
+                </tr>
+                <tr>
+                    <th class="text-info" scope="row">Name :</th>
+                    <td class="text-white">@Model.Name</td>
+
+                </tr>
+                <tr>
+                    <th class="text-info" scope="row">Phone :</th>
+                    <td class="text-white"><span>0</span>@Model.Phone</td>
+
+                </tr>
+                <tr>
+                    <th class="text-info" scope="row">Email :</th>
+                    <td class="text-white">@Model.Email</td>
+
+                </tr>
+
+                <tr>
+                    <th class="text-info" scope="row">Address :</th>
+                    <td class="text-white">@Model.Address</td>
+
+                </tr>
+                <tr>
+                    <th class="text-info" scope="row">Order Date :</th>
+                    <td class="text-white">@Model.OrderDateTime.ToString("dddd, dd MMMM yyyy hh:mm:ss tt")</td>
+
+                </tr>
+                <tr>
+                    <th class="text-info" scope="row">Date :</th>
+                    <td class="text-white">@Model.Date.ToString("dddd, dd MMMM yyyy ")</td>
+
+                </tr>
+
+                <tr>
+                    <th class="text-info" scope="row">Another Date :</th>
+                    <td class="text-white">@Model.AnotherDate.ToString("dddd, dd MMMM yyyy")</td>
+
+                </tr>
+                <tr>
+                    <th class="text-info" scope="row">Service Type :</th>
+                    <td class="text-white">@Model.Service.Name</td>
+
+                </tr>
+                <tr>
+                    <th class="text-info" scope="row">Status :</th>
+                    @if (Model.StatusId == 1)
+                    {
+                        <td style="color:yellow">@Model.Status.Name</td>
+
+                    }
+                    @if (Model.StatusId == 2)
+                    {
+                        <td style="color:blue">@Model.Status.Name</td>
+
+                    }
+                    @if (Model.StatusId == 3)
+                    {
+                        <td style="color:forestgreen">@Model.Status.Name</td>
+
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-info" scope="row">Notes:</th>
+                    <td class="text-white">@Model.Notes</td>
+
+                </tr>
+                @if (Model.Status.Name == "Done")
+                {
+                    <tr>
+                        <th class="text-info" scope="row">FeedBack :</th>
+                        <td class="text-white">@Model.FeedBack</td>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts{
+
+    <script>
+        $(function () {
+            $('.js-basic-example').DataTable({
+                paging: false,
+                bSort: false,
+                bFilter: false,
+                search: false,
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: "collection",
+                        className: "btn btn-primary",
+                        titleAttr: 'Export',
+                        text: 'Export',
+                        buttons: [
+                            {
+                                extend: "print",
+                                title: 'Orders',
+                            },
+
+                            {
+                                extend: "pdf",
+                                title: 'Orders',
+                                download: 'open'
+
+                            },
+
+                            'excel', 'csv', 'copy'
+                        ],
+
+
+
+                    }
+                ],
+
+
+                //bLengthChange: false,
+                //bInfo: false,
+
+            });
+        });
+
+
+
+
+
+    </script>
+
+}
+
+
+

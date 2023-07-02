@@ -1,0 +1,62 @@
+﻿@model CraftmanVM
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="col-12">
+    
+    <div class="bg-dark rounded h-100 p-4">
+        <h1 class="text-white">Details</h1>
+        <a asp-action="Index" class="btn btn-outline-danger">Back</a>
+        <h6 class="mb-4">Accented Table</h6>
+        <table class="table table-hover">
+
+            <tbody>
+                <tr>
+                    <th class="text-info" scope="row">Name :</th>
+                    <td class="text-white">@Model.Name</td>
+
+                </tr>
+                <tr>
+                    <th class="text-info" scope="row">Age :</th>
+                    <td class="text-white">@Model.Age</td>
+
+                </tr>
+                <tr>
+                    <th class="text-info" scope="row">Email :</th>
+                    <td class="text-white">@Model.Email</td>
+
+                </tr>
+                <tr>
+                    <th class="text-info" scope="row">Phone Number :</th>
+                    <td class="text-white"><span>0</span>@Model.Phone</td>
+
+                </tr>
+
+                <tr>
+                    <th class="text-info" scope="row">Address :</th>
+                    <td class="text-white">@Model.Address</td>
+
+                </tr>
+                <tr>
+                    <th class="text-info" scope="row">Service Type :</th>
+                    <td class="text-white">@Model.Service.Name</td>
+
+                </tr>
+                <tr>
+                    <th class="text-info" scope="row">City :</th>
+                    <td class="text-white">@Model.City.Name</td>
+
+                </tr>
+                <tr>
+                    <th class="text-info" scope="row">Notes:</th>
+                    <td class="text-white">@Model.Notes</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

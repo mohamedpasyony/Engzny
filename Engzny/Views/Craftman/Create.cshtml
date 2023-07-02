@@ -1,0 +1,76 @@
+﻿
+@model CraftmanVM
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="bg-dark d-flex justify-content-center col-10 " style="border-radius:9px" >
+    <div class="col-md-6 bg-dark mt-4 mb-4 ">
+        <h1 class="text-white text-center ">Add Craftman</h1>
+        <form method="POST" asp-action="Create" asp-controller="Craftman">
+            <div class="form-group">
+                <label class="text-info" asp-for="Name"></label>
+                <input type="text" class="form-control" asp-for="Name" maxlength="50" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label class="text-info" asp-for="ServiceId"></label>
+                <select class="form-control " asp-for="ServiceId" asp-items="@(new SelectList(Model.Services, "Id", "Name"))">
+                    <option></option>
+                </select>
+                <span asp-validation-for="ServiceId" class="text-danger"></span>
+            </div>
+            <br />
+
+            <div class="form-group">
+                <label class="text-info" asp-for="CityId"></label>
+                <select class="form-control" asp-for="CityId" asp-items="@(new SelectList(Model.Cities, "Id", "Name"))">
+                    <option></option>
+                </select>
+                <span asp-validation-for="CityId" class="text-danger"></span>
+            </div>
+            <br />
+
+            <div class="form-group w-50">
+                <label class="text-info" asp-for="Age"></label>
+                <input type="number" class="form-control" asp-for="Age" value="" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <br />
+
+            <div class="form-group w-50">
+                <label class="text-info" asp-for="Phone"></label>
+                <input type="number" class="form-control" asp-for="Phone" value="" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <br />
+
+            <div class="form-group w-50">
+                <label class="text-info" asp-for="Email"></label>
+                <input type="email" class="form-control" asp-for="Email" value="" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <br />
+
+            <div class="form-group ">
+                <label class="text-info" asp-for="Address"></label>
+                <textarea class="form-control" asp-for="Address" maxlength="2500" rows="4"></textarea>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <br />
+
+            <div class="form-group d-flex justify-content-center">
+                <button type="submit" class="btn btn-outline-success mt-4"> Save </button>
+                <a asp-action="Index" class="btn btn-outline-danger mt-4" style="margin-left:10px"> Back </a>
+
+            </div>
+            
+
+
+        </form>
+    </div>
+</div>
+
+<script src="~/jquery/dist/jquery.js"></script>
+<script src="~/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>

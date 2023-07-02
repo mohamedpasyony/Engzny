@@ -1,0 +1,80 @@
+﻿
+@{
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@200;300;400;500;600;700&display=swap" />
+    <title>Thanks</title>
+    <style>
+        
+        body {
+            background-color: #333;
+            font-family: 'Noto Kufi Arabic', sans-serif;
+        }
+
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 150px auto;
+            max-width: 700px;
+            padding: 20px;
+            text-align: center;
+            direction: rtl;
+        }
+
+
+        .fas {
+            color: #029cff;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        .title {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .message-1 {
+            font-weight: bold;
+            font-size: 20px;
+            margin: 20px;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .btn {
+            background-color: #029cff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <i class="fas fa-check-circle fa-5x"></i>
+        <h1 class="title">نشكركم علي طلب الخدمه!</h1>
+        <p class="message-1"> لقد استلمنا طلبك وسوف يتم الاتصال  بكم في اسرع وقت لتاكيد الطلب.</p>
+        <a asp-action="Index" class="btn"><i class="fas fa-arrow-left"></i> العودة الي الرئيسية</a>
+    </div>
+
+</body>
+
+</html>

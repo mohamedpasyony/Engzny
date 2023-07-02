@@ -1,0 +1,383 @@
+﻿@inject SignInManager<IdentityUser> SignManger
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="~/img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
+
+
+
+    <!-- JQuery DataTable Css -->
+    <link href="~/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="~/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-xxl position-relative bg-white d-flex  p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 4rem; height: 4rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-light navbar-light">
+                <a asp-action="Index" asp-controller="Home" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary"><i class="fas fa-tools me-2"></i>Engzny</h3>
+                </a>
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    <div class="position-relative">
+                        <img class="rounded-circle" src="~/img/User.png" alt="" style="width: 40px; height: 40px;">
+                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                    </div>
+                    <div class="ms-3">
+                        @if (SignManger.IsSignedIn(User))
+                        {
+                            <h6 class="mb-0">@User.Identity.Name</h6>
+                            <!--
+
+                              var user = await UserManger.FindByNameAsync(User.Identity.Name);
+                              var role = await UserManger.GetRolesAsync(user);
+                              foreach (var item in role)
+                             {
+                                <span></span>
+
+                               }
+
+                            -->
+                            if (User.IsInRole("Admin"))
+                            {
+                                <span>Admin</span>
+                            }
+                            if (User.IsInRole("Manger"))
+                            {
+                                <span>Manger</span>
+                            }
+                            if (User.IsInRole("Customer Service"))
+                            {
+                                <span>Customer Service</span>
+                            }
+
+
+                        }
+                    </div>
+
+                </div>
+                @if (@User.IsInRole("Admin"))
+                {
+                    <div class="navbar-nav w-100">
+                        <a asp-action="Index" asp-controller="Home" class="nav-item nav-link active"><i class="fas fa-home me-2"></i>Home</a>
+                        <br />
+                        <a asp-action="Index" asp-controller="Order" class="nav-item nav-link active"><i class="fas fa-shopping-cart me-2"></i>Orders</a>
+                        <br />
+                        <a asp-action="Index" asp-controller="Craftman" class="nav-item nav-link active"><i class="fas fa-people-carry me-2"></i>Craftsmen</a>
+                        <br />
+                        <a asp-action="Index" asp-controller="Service" class="nav-item nav-link active"><i class="fas fa-wrench me-2"></i>Services</a>
+                        <br />
+                        <a asp-action="Index" asp-controller="Roles" class="nav-item nav-link active"><i class="fas fa-ban me-2"></i>Roles</a>
+                        <br />
+                        <a asp-action="Index" asp-controller="User" class="nav-item nav-link active"><i class="fas fa-users me-2"></i>Users</a>
+                        <br />
+                        <a asp-action="Index" asp-controller="Contact" class="nav-item nav-link active"><i class="far fa-address-book me-2"></i>Contacts</a>
+                        <br />
+                        <a asp-action="Index" asp-controller="Site" class="nav-item nav-link active"><i class="fas fa-walking me-2"></i>Site</a>
+                        <br />
+                        <a asp-action="Regestration" asp-controller="Regestration" class="nav-item nav-link active"><i class="fas fa-walking me-2"></i>Registration</a>
+
+                    </div>
+
+                }
+
+                @if (@User.IsInRole("Manger"))
+                {
+                    <div class="navbar-nav w-100">
+                        <a asp-action="Index" asp-controller="Home" class="nav-item nav-link active"><i class="fas fa-home me-2"></i>Home</a>
+                        <br />
+                        <a asp-action="Index" asp-controller="Order" class="nav-item nav-link active"><i class="fas fa-shopping-cart me-2"></i>Orders</a>
+                        <br />
+                        <a asp-action="Index" asp-controller="Craftman" class="nav-item nav-link active"><i class="fas fa-people-carry me-2"></i>Craftsmen</a>
+                        <br />
+                        <a asp-action="Index" asp-controller="Service" class="nav-item nav-link active"><i class="fas fa-wrench me-2"></i>Services</a>
+                        <br />
+
+                        <a asp-action="Index" asp-controller="Contact" class="nav-item nav-link active"><i class="far fa-address-book me-2"></i>Contacts</a>
+                        <br />
+                        <a asp-action="Index" asp-controller="Site" class="nav-item nav-link active"><i class="fas fa-walking me-2"></i>Site</a>
+                        <br />
+
+                    </div>
+
+                }
+
+                @if (@User.IsInRole("Customer Service"))
+                {
+                    <div class="navbar-nav w-100">
+                        <a asp-action="Index" asp-controller="Home" class="nav-item nav-link active"><i class="fas fa-home me-2"></i>Home</a>
+                        <br />
+                        <a asp-action="Index" asp-controller="Order" class="nav-item nav-link active"><i class="fas fa-shopping-cart me-2"></i>Orders</a>
+                        <br />
+                        <a asp-action="Index" asp-controller="Contact" class="nav-item nav-link active"><i class="far fa-address-book me-2"></i>Contacts</a>
+                        <br />
+                        <a asp-action="Index" asp-controller="Site" class="nav-item nav-link active"><i class="fas fa-walking me-2"></i>Site</a>
+
+                    </div>
+
+                }
+
+            </nav>
+
+        </div>
+        <!-- Sidebar End -->
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0 ">
+                <a href="index.html" class="navbar-brand d-flex d-lg-none ">
+                    <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
+                </a>
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                </a>
+
+
+
+                <div class="nav-item dropdown">
+                    <a id="OnClick" href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <span class="notification-count"></span>
+                        <i class="fa fa-bell me-lg-2"></i>
+                        <span class="d-none d-lg-inline-flex">Notification</span>
+                    </a>
+                    <div id="test1" class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+
+                        <hr class="dropdown-divider">
+                        <a id="noNotification" class="dropdown-item text-center"> There are no new notifications !</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown" style="margin-left:auto">
+
+
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <img class="rounded-circle me-lg-2" src="~/img/User.png" alt="" style="width: 40px; height: 40px;">
+                        @if (SignManger.IsSignedIn(User))
+                        {
+                            <span class="d-none d-lg-inline-flex">@User.Identity.Name</span>
+                        }
+
+                    </a>
+
+
+
+                    <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+
+                        <a asp-action="LogOut" asp-controller="Account" class="dropdown-item">Log Out</a>
+                    </div>
+                </div>
+
+
+
+
+            </nav>
+            <!-- Navbar End -->
+            <!-- Sale & Revenue Start -->
+            <!-- Sale & Revenue End -->
+
+            <div class=" container-fluid mt-5  pt-4 px-4  ">
+                <div>
+                    @RenderBody()
+                </div>
+
+
+            </div>
+            <!-- Footer Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                            &copy; <a href="#">Engzny</a>, All Right Reserved.
+                        </div>
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                            Designed By Team Engzny
+                            </br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+    <script src="~/Plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="~/Plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.colVis.min.js"></script>
+    <script src="~/lib/chart/chart.min.js"></script>
+    <script src="~/SiteFolders/js/jquery.timeago.js"></script>
+    <script src="~/lib/easing/easing.min.js"></script>
+    <script src="~/lib/waypoints/waypoints.min.js"></script>
+    <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="~/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="~/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="~/lib/bootbox.js/bootbox.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+
+            $(function () {
+
+                // define connecrtion
+                con = new signalR.HubConnectionBuilder().withUrl("/notifiactionHub").build();
+                // start connection
+                con.start();
+                notificationCount = 0;
+                var url ="@Url.Content("~/Sounds/livechat-129007.mp3")";
+                const notificationSound = new Audio(url);
+
+
+
+
+                //subcribe new message method
+                con.on("newOrderNotification", function (Name,message,time) {
+
+                    const $myDiv = $('#test1');
+                    // Increment the notification count
+                    notificationCount++;
+                        // Update the count element
+                    $(".notification-count").text(notificationCount).show();
+                    $("#noNotification").hide();
+                    // Play the notification sound
+                    notificationSound.play();
+                    const $newLink = $('<a href="/Order/Index" class="dropdown-item"><h6 class="fw-normal mb-0">' + message + ' ' + Name + '</h6><time class="timeago" datetime="' + time + '"  <time></a>');
+                    $myDiv.prepend($newLink);
+                    $("time.timeago").timeago();
+                    $myDiv.prepend('<hr class="dropdown-divider">');
+
+
+                })
+
+                con.on("newContactNotification", function (Name, message, time) {
+
+                    const $myDiv = $('#test1');
+                    // Increment the notification count
+                    notificationCount++;
+                    // Update the count element
+                    $(".notification-count").text(notificationCount).show();
+                    $("#noNotification").hide();
+                     // Play the notification sound
+                    notificationSound.play();
+                    const $newLink = $('<a href="/Contact/Index" class="dropdown-item"><h6 class="fw-normal mb-0">' + message + ' ' + Name + '</h6><time class="timeagoC" datetime="' + time + '"  <time></a>');
+                    $myDiv.prepend($newLink);
+                    $("time.timeagoC").timeago();
+                    $myDiv.prepend('<hr class="dropdown-divider">');
+
+                })
+
+                con.on("NewContact", function (Name,Email,Phone,Date,id) {
+
+                    const $contact = $('<tr class="text-white parent"><td>' + Name + ' </td> <td>' + Email + ' </td> <td><span>0</span>' + Phone + '</td> <td>' + Date + ' </td> <td><a href="/Contact/Details/'+id+ '"' + 'class="btn btn-success">' + 'Details</a></td>' + '<td><a href="javascript:;" data-id="' + id + '" class="btn btn-danger js-delete">Delete</a></td>' + '</tr >');
+                    const $table = $('#Tbody');
+                    $table.prepend($contact);
+
+
+
+                })
+
+
+                con.on("newOrder", function (Name, Phone, Date,Service,Id) {
+
+                   const  $htmlCode ='<tr class="text-white parent">' +
+                       '<td>' +
+                       Id +
+                        '</td>' +
+                       '<td>' + Name + '</td>' +
+                       '<td>' + Service + '</td>' +
+                        '<td><span>0</span>' + Phone + '</td> ' +
+                        '<td>' + Date + '</td> '
+                            +
+                           '<td style="color:yellow">Pending</td>'
+
+                            +
+                           '<td><a href="/Order/Details/'+Id+'"class="btn btn-success">Details</a></td>'
+
+                       +
+                       '<td><a href="/Order/UpdateStatus/'+Id +'" class="btn btn-primary">Change Status</a></td>'
+                       +
+                       '<td><a href="javascript:;" data-id="'+Id+'" class="btn btn-danger js-delete">Delete</a></td>' +
+                      '</tr>';
+
+                    const $table = $('#Otbody');
+                    $table.prepend($htmlCode);
+
+
+
+                })
+
+
+            })
+
+
+            // When the user clicks on the notification icon, reset the count
+            $("#OnClick").click(() => {
+                notificationCount = 0;
+                $(".notification-count").hide();
+            });
+
+
+
+    </script>
+
+    @await Component.InvokeAsync("NToastNotify")
+
+    <!-- Template Javascript -->
+    <script src="~/js/main.js"></script>
+
+
+</body>
+
+</html>
